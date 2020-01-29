@@ -2,7 +2,7 @@ package http
 
 // ProductDto for the http response
 type ProductDto struct {
-	id    string `json:productId`
-	title string `json:title`
-	sku   string `json:sku`
+	Id    string `json:productId`
+	Title string `json:title`
+	Sku   string `json:sku`
 }

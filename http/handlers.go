@@ -31,14 +31,14 @@ func (p *productHandler) Get() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		products := []ProductDto{
 			ProductDto{
-				id:    "123",
-				title: "Fantastic",
-				sku:   "444555",
+				Id:    "123",
+				Title: "Fantastic",
+				Sku:   "444555",
 			},
 			ProductDto{
-				id:    "125",
-				title: "Awesome",
-				sku:   "334444",
+				Id:    "125",
+				Title: "Awesome",
+				Sku:   "334444",
 			},
 		}
 
