@@ -8,8 +8,10 @@ import (
 
 // Start the server
 func Start() {
-	http.HandleFunc("/", hello)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	// http.HandleFunc("/", hello)
+	// http.Handler("/api", routes())
+
+	log.Fatal(http.ListenAndServe(":8080", routes()))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
