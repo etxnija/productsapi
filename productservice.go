@@ -13,13 +13,15 @@ type productService struct {
 }
 
 // NewProductService returnm the service
-func NewProductService() ProductService {
-	return &productService{}
+func NewProductService(repo ProductRepository) ProductService {
+	return &productService{
+		repo: repo,
+	}
 }
 
 // GetProducts paginated and filtered
 func (s *productService) GetProducts(p Page, f Filter) ([]Product, error) {
-	return nil, nil
+	return s.repo.GetAll()
 }
 
 // GetProduct by id

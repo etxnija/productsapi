@@ -29,18 +29,8 @@ func NewProductHandler(productService productsapi.ProductService) ProductHandler
 
 func (p *productHandler) Get() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
-		products := []ProductDto{
-			ProductDto{
-				Id:    "123",
-				Title: "Fantastic",
-				Sku:   "444555",
-			},
-			ProductDto{
-				Id:    "125",
-				Title: "Awesome",
-				Sku:   "334444",
-			},
-		}
+
+		products, err := p.productService.GetProducts(productsapi.Page{}, productsapi.Filter{})
 
 		response, err := json.Marshal(products)
 		if err != nil {

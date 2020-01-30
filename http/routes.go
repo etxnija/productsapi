@@ -2,12 +2,10 @@ package http
 
 import (
 	"net/http"
-
-	"github.com/etxnija/productsapi"
 )
 
-func routes() *http.ServeMux {
-	handler := NewProductHandler(productsapi.NewProductService())
+func (s *Server) routes() *http.ServeMux {
+	handler := NewProductHandler(s.Service)
 	mux := http.NewServeMux()
 	mux.HandleFunc("/products", handler.Get())
 	return mux
