@@ -18,7 +18,7 @@ func (s *Server) Start() {
 	// http.HandleFunc("/", hello)
 	// http.Handler("/api", routes())
 
-	log.Fatal(http.ListenAndServe(":8080", s.routes()))
+	log.Fatal(http.ListenAndServe(":8080", s.Routes()))
 }
 
 func hello(w http.ResponseWriter, r *http.Request) {
