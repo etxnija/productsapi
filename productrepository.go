@@ -5,4 +5,5 @@ type ProductRepository interface {
 	Create(p *Product) error
 	FindByID(id string) (*Product, error)
 	GetAll() ([]Product, error)
+	Get(sku string) ([]Product, error)
 }

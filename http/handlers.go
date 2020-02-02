@@ -2,6 +2,7 @@ package http
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/etxnija/productsapi"
@@ -30,7 +31,19 @@ func NewProductHandler(productService productsapi.ProductService) ProductHandler
 func (p *productHandler) Get() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 
-		products, err := p.productService.GetProducts(productsapi.Page{}, productsapi.Filter{})
+		var f *productsapi.Filter
+		r.ParseForm()
+		if len(r.Form) > 0 {
+			sku := r.FormValue("sku")
+			log.Printf(sku)
+			if sku != "" {
+				f = &productsapi.Filter{
+					Sku: sku,
+				}
+			}
+		}
+
+		products, err := p.productService.GetProducts(productsapi.Page{}, f)
 
 		response, err := json.Marshal(products)
 		if err != nil {

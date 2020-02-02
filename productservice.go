@@ -2,7 +2,7 @@ package productsapi
 
 // ProductService for managing products
 type ProductService interface {
-	GetProducts(p Page, f Filter) ([]Product, error)
+	GetProducts(p Page, f *Filter) ([]Product, error)
 	GetProduct(id int) (*Product, error)
 	CreateProduct(p Product) (Product, error)
 	UpdateProduct(p Product) error
@@ -20,7 +20,10 @@ func NewProductService(repo ProductRepository) ProductService {
 }
 
 // GetProducts paginated and filtered
-func (s *productService) GetProducts(p Page, f Filter) ([]Product, error) {
+func (s *productService) GetProducts(p Page, f *Filter) ([]Product, error) {
+	if f != nil {
+		return s.repo.Get(f.Sku)
+	}
 	return s.repo.GetAll()
 }
 
@@ -47,6 +50,6 @@ type Page struct {
 
 // Filter for products
 type Filter struct {
-	sku     string
-	barcode string
+	Sku     string
+	Barcode string
 }
